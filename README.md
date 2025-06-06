@@ -51,9 +51,9 @@ Simulare una rete aziendale segmentata con firewall ASA, VLAN, ACL e routing per
 ### ASA0
 ```bash
 route outside 192.168.30.0 255.255.255.0 192.168.0.1
-
----
+```
 
 ### ASA1
 ```bash
 route outside 192.168.30.0 255.255.255.0 192.168.0.1
+```
