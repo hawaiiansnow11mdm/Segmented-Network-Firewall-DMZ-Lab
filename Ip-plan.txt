@@ -1,0 +1,35 @@
+────────────────────────────────────────────
+📌 IP PLAN – Segmented Network Firewall DMZ Lab
+────────────────────────────────────────────
+
+🌐 LAN (VLAN 10)
+--------------------------------------------
+Device            IP Address        Note
+--------------------------------------------
+PC0 (IT)          192.168.10.10     Host nella rete IT
+PC1 (Admin)       192.168.10.11     Host nella rete Amministrazione
+ASA0 Inside       192.168.10.1      Gateway LAN (VLAN 10)
+
+🔀 Collegamento LAN ↔ ASA0 ↔ Router
+--------------------------------------------
+ASA0 Outside      192.168.0.2       Collegamento a Router (VLAN 2)
+Router G0/0       192.168.0.1       Verso ASA0
+
+🌐 DMZ (VLAN 30)
+--------------------------------------------
+Device            IP Address        Note
+--------------------------------------------
+PC3 (Sales)       192.168.30.50     Host Sales (DMZ)
+Server DMZ        192.168.30.100    Server accessibile dall’esterno
+ASA1 Inside       192.168.30.1      Gateway DMZ (VLAN 30)
+
+🔀 Collegamento DMZ ↔ ASA1 ↔ Router
+--------------------------------------------
+ASA1 Outside      192.168.0.6       Collegamento a Router (VLAN 2)
+Router G0/1       192.168.0.5       Verso ASA1
+
+📄 Subnet
+--------------------------------------------
+LAN Subnet        192.168.10.0/24
+DMZ Subnet        192.168.30.0/24
+Transit Subnet    192.168.0.0/24
