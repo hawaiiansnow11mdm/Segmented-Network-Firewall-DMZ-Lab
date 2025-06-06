@@ -1,0 +1,32 @@
+────────────────────────────────────────────
+📌 ACL TABLE – Segmented Network Firewall DMZ Lab
+────────────────────────────────────────────
+
+🛡️ ASA0 – LAN to Outside
+------------------------------------------------------
+Access List: INSIDE-OUT
+Direction:   IN (applied on inside interface – VLAN 10)
+
+Rule #  | Action | Protocol | Source           | Destination      | Description
+------- |--------|----------|------------------|------------------|-----------------------------
+1       | Permit | ICMP     | 192.168.10.0/24  | 192.168.30.0/24  | Ping verso DMZ
+2       | Permit | ICMP     | 192.168.10.0/24  | 192.168.0.1      | Ping verso il Router
+3       | Permit | ICMP     | 192.168.10.0/24  | 192.168.0.5-0.6  | Ping verso ASA1 e Router G0/1
+
+🛡️ ASA1 – DMZ to Outside
+------------------------------------------------------
+Access List: DMZ-OUT
+Direction:   IN (applied on inside interface – VLAN 30)
+
+Rule #  | Action | Protocol | Source           | Destination      | Description
+------- |--------|----------|------------------|------------------|-----------------------------
+1       | Permit | ICMP     | 192.168.30.0/24  | 192.168.10.0/24  | Ping verso la LAN
+2       | Permit | ICMP     | 192.168.30.0/24  | 192.168.0.1-0.2  | Ping verso il Router e ASA0
+
+🛡️ Logging ACL
+------------------------------------------------------
+✘ Non attivato (opzionale per estensione avanzata)
+
+📌 Note:
+- Le ACL sono applicate solo sul traffico **in entrata** nelle interfacce ASA (inside).
+- Nessuna regola di deny è necessaria, in quanto il comportamento predefinito di ASA è negare tutto ciò che non è esplicitamente permesso.
