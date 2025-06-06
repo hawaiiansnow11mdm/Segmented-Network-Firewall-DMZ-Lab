@@ -17,7 +17,7 @@ Simulare una rete aziendale segmentata con firewall ASA, VLAN, ACL e routing per
 
 - **DMZ**:
   - Server DMZ: 192.168.30.100
-  - PC Sales (client DMZ): 192.168.30.10
+  - PC Sales (client DMZ): 192.168.30.50
   - Gateway: ASA1 (192.168.30.1)
 
 - **Firewall ASA**:
@@ -52,6 +52,8 @@ Simulare una rete aziendale segmentata con firewall ASA, VLAN, ACL e routing per
 ```bash
 route outside 192.168.30.0 255.255.255.0 192.168.0.1
 
+---
+
 ### ASA1
 ```bash
-route outside 192.168.10.0 255.255.255.0 192.168.0.5
+route outside 192.168.30.0 255.255.255.0 192.168.0.1
