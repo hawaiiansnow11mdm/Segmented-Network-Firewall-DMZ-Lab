@@ -1,0 +1,81 @@
+: Saved
+:
+ASA Version 8.4(2)
+!
+hostname ciscoasa
+names
+!
+interface Ethernet0/0
+ switchport access vlan 2
+!
+interface Ethernet0/1
+ switchport access vlan 10
+!
+interface Ethernet0/2
+ switchport access vlan 30
+!
+interface Ethernet0/3
+ switchport access vlan 1
+!
+interface Ethernet0/4
+ switchport access vlan 1
+!
+interface Ethernet0/5
+ switchport access vlan 1
+!
+interface Ethernet0/6
+ switchport access vlan 1
+!
+interface Ethernet0/7
+ switchport access vlan 1
+!
+interface Vlan1
+ no nameif
+ no security-level
+ ip address 192.168.1.1 255.255.255.0
+!
+interface Vlan2
+ nameif outside
+ security-level 0
+ ip address 192.168.0.2 255.255.255.252
+!
+interface Vlan10
+ nameif inside
+ security-level 100
+ ip address 192.168.10.1 255.255.255.0
+!
+interface Vlan30
+ no nameif
+ no security-level
+ no ip address
+!
+!
+route outside 192.168.30.0 255.255.255.0 192.168.0.1 1
+!
+access-list OUTSIDE-IN extended permit icmp any any
+access-list OUTSIDE-IN extended permit tcp any host 192.168.10.10 eq www
+access-list OUTSIDE-IN extended permit tcp any host 192.168.10.10 eq 443
+access-list OUTSIDE-IN extended permit udp any host 192.168.10.10 eq domain
+access-list OUTSIDE-IN extended permit icmp host 192.168.0.1 host 192.168.10.10
+access-list INSIDE-OUT extended permit icmp any any
+access-list INSIDE-OUT extended permit icmp any host 192.168.0.2
+!
+!
+access-group OUTSIDE-IN in interface outside
+access-group INSIDE-OUT in interface inside
+!
+!
+!
+!
+!
+telnet timeout 5
+ssh timeout 5
+!
+dhcpd auto_config outside
+!
+dhcpd enable 
+!
+!
+!
+!
+!
