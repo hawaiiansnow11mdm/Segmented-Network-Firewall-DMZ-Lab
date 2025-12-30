@@ -2,13 +2,13 @@
 
 Laboratorio di rete realizzato in Cisco Packet Tracer con focus su segmentazione, sicurezza e simulazione di traffico tra zone (LAN, DMZ, WAN) utilizzando firewall ASA.
 
-## 🔧 Obiettivo del progetto
+## Obiettivo del progetto
 
 Simulare una rete aziendale segmentata con firewall ASA, VLAN, ACL e routing per comprendere come isolare correttamente le reti interne e proteggere i server nella DMZ.
 
 ---
 
-## 🧱 Topologia di rete
+## Topologia di rete
 
 - **LAN interna**:
   - PC0 (IT): 192.168.10.10
@@ -34,7 +34,7 @@ Simulare una rete aziendale segmentata con firewall ASA, VLAN, ACL e routing per
 
 ---
 
-## 📜 Regole ACL configurate
+## Regole ACL configurate
 
 ### ASA0
 - Permettere `icmp`, `http`, `https`, `dns` da LAN verso outside
@@ -46,7 +46,7 @@ Simulare una rete aziendale segmentata con firewall ASA, VLAN, ACL e routing per
 
 ---
 
-## 📍 Routing
+## Routing
 
 ### ASA0
 ```bash
